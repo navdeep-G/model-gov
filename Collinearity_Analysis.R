@@ -29,7 +29,7 @@ h2o.collin <- function(data, cols, add.intercept=TRUE, impute_missing = TRUE) {
   }
   
   ## Find Constant Columns
-  desc = h2o.describe0(X)
+  desc = h2o.describe(X)
   constant_cols = row.names(desc)[(desc$Missing == 0) & (desc$Min == desc$Max)]
   # X = X[-which(names(X) %in% constant_cols)]
   xi = setdiff(xi, constant_cols)
@@ -71,7 +71,7 @@ h2o.collin(data = prostate.hex, cols = 3:9, impute_missing = T)
 # ## Comparing to SAS docs
 # ## doc link: https://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_reg_sect038.htm
 # ## Run with fitness dataset.
-# fitness = h2o.importFile(path = "/Users/amy/0xdata/data/fitness.csv")
+# fitness = h2o.importFile(path = "/path/to/fitness.csv")
 # fit.glm = h2o.glm(x = setdiff(1:ncol(fitness), 3), y = 3, training_frame = fitness, lambda = 0)
 # ## To run collin set add.intercept = T
 # h2o.collin(model = fit.glm, add.intercept = T)
