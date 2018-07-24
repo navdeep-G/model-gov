@@ -27,11 +27,11 @@ h2o.vif <- function(data,cols) {
   }
   
   ## Find Constant Columns
-  desc = h2o.describe0(X)
+  desc = h2o.describe(X)
   constant_cols = row.names(desc)[(desc$Missing == 0) & (desc$Min == desc$Max)]
   # X = X[-which(names(X) %in% constant_cols)]
   xi = setdiff(xi, constant_cols)
-  
+  colnames(X) = xi
   ## Run regression of each predictors against all others
   r2 = c()
   i = 1
@@ -64,6 +64,6 @@ h2o.vif(data = prostate.hex, cols = 3:9)
 
 # # Comparing to SAS docs
 # # doc link: https://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_reg_sect038.htm
-# fitness = h2o.importFile(path = "/Users/amy/Desktop/fitness.csv")
+# fitness = h2o.importFile(path = "/path/to/fitness.csv")
 # fit.glm = h2o.glm(x = setdiff(1:ncol(fitness), 3), y = 3, training_frame = fitness, lambda = 0)
 # h2o.vif(fit.glm)
