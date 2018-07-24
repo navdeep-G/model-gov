@@ -36,7 +36,6 @@ h2o.vif <- function(data,cols) {
   r2 = c()
   i = 1
   h2o.no_progress()
-  print("Proportion completed:")
   while(i <= length(xi) ) {
     lm = h2o.glm(y = xi[i],
                  x = setdiff(xi, xi[i]),
@@ -45,10 +44,10 @@ h2o.vif <- function(data,cols) {
                  model_id = paste0("VIF", "_", x[i]))
     r2 = c(r2, h2o.r2(lm) )
     h2o.rm(lm@model_id)
-    print(i/length(xi))
+    print(paste0("Proportion completed: ", i/length(xi)))
     i = i + 1 
   }
-  res = data.frame(names = xi, r2 = r2, tolerance = 1-r2, vif = 1/(1-r2))
+  res = data.frame(column_index = xi, r2 = r2, tolerance = 1-r2, vif = 1/(1-r2))
   res = res[order(res$vif, decreasing = T),]
   return(res)
 }
