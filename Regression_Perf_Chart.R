@@ -72,6 +72,7 @@ h2o.r2 <- function(model, valid = F) {
   return(r2)
 }
 
+#Example
 library(h2o)
 h2o.init(nthreads = -1)
 prostate.hex = h2o.uploadFile(path = system.file("extdata", "prostate.csv", package="h2o"), destination_frame = "prostate.hex")
