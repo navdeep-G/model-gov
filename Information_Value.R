@@ -64,13 +64,13 @@ iv.H2OFrame <- function(frame, x, y) {
   return(res)
 }
 
+#Example
 iris_2 <- iris[1:100,]
 iris_2$Species = ifelse(iris_2$Species == "setosa", "setosa", "versicolor")
 iris_2$Species = as.factor(iris_2$Species)
 iris.hex <- as.h2o(iris_2)
 
 x = names(iris)[1:4]
-iv.num(df = iris_2, x = x[1], y = "Species")
 iv.H2OFrame(frame = iris.hex, x = x[1] , y = "Species")
 
 ## LOOP THROUGH ALL FEATURES -- expensive

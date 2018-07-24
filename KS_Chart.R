@@ -17,9 +17,9 @@ h2o.ks_chart <- function(model, data) {
 }
 
 ## Example Code:
-# demo(h2o.glm)
-# ks_chart = h2o.ks_chart(prostate.glm, prostate.hex)
-# max_ks = attr(ks_chart, "max_ks")
+demo(h2o.glm)
+ks_chart = h2o.ks_chart(prostate.glm, prostate.hex)
+max_ks = attr(ks_chart, "max_ks")
 
 
 ## Requires data.table to do a quick sort
@@ -61,7 +61,7 @@ h2o.manual_ks_chart <- function(pred, actual) {
   return(dat)
 }
 # Example Code:
-# predictions = h2o.predict(prostate.glm, prostate.hex)[,3]
-# actual = prostate.hex[,"CAPSULE"]
-# ks_chart2 = h2o.manual_ks_chart(pred = predictions, actual = actual)
+predictions = h2o.predict(prostate.glm, prostate.hex)[,3]
+actual = prostate.hex[,"CAPSULE"]
+ks_chart2 = h2o.manual_ks_chart(pred = predictions, actual = actual)
 
